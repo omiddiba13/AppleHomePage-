@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Apple</title>
+    <link rel="stylesheet" href="./style.css" />
+    <!-- <style>
+      /* Reset and Base Styles */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+          "Helvetica Neue", Arial, sans-serif;
+        overflow-x: hidden;
+        background-color: #f5f5f7;
+        color: #1d1d1f;
+        min-width: 320px;
+      }
+
+      /* Common Styles */
+      .flex-center {
+        display: flex;
+        align-items: center;
+      }
+
+      .apple-logo {
+        height: 48px;
+      }
+
+      .navbar {
+        display: flex;
+        align-items: center;
+        position: fixed;
+        top: 0;
+        width: 100%;
+        background: rgba(255, 255, 255, 0.8);
+        box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
+        z-index: 4;
+      }
+
+      .nav-links {
+        list-style-type: none;
+        display: flex;
+        gap: 20px;
+      }
+
+      .nav-links li a {
+        color: #1d1d1f;
+        text-decoration: none;
+        transition: opacity 0.3s ease;
+      }
+
+      .nav-links a:hover {
+        opacity: 0.7;
+      }
+
+      .menu-btn {
+        background: none;
+        border: none;
+        cursor: pointer;
+        z-index: 5;
+      }
+
+      .menu-icon {
+        position: relative;
+        width: 18px;
+        height: 10px;
+      }
+
+      .menu-icon span {
+        position: absolute;
+        width: 100%;
+        height: 2px;
+        background-color: #1d1d1f;
+        transition: all 0.3s ease;
+      }
+
+      .menu-icon span:first-child {
+        top: 0;
+      }
+
+      .menu-icon span:last-child {
+        top: 100%;
+      }
+
+      .menu-btn.active .menu-icon span:first-child {
+        transform: rotate(45deg) translate(4px, 4px);
+      }
+
+      .menu-btn.active .menu-icon span:last-child {
+        transform: rotate(-45deg) translate(4px, -4px);
+      }
+
+      .overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.7);
+        backdrop-filter: blur(3px);
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.3s ease;
+        z-index: 2;
+      }
+
+      .overlay.active {
+        opacity: 1;
+        visibility: visible;
+      }
+
+      /* Mobile Styles (up to 833px) */
+      @media (max-width: 833px) {
+        .navbar {
+          justify-content: space-between;
+          padding: 0px 8px 0px 8px;
+        }
+
+        .nav-links {
+          position: fixed;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          flex-direction: column;
+          background: #f5f5f7;
+          padding: 80px 20px 20px;
+          transform: translateY(-100%);
+          opacity: 0;
+          z-index: 3;
+          gap: 15px;
+          transition: transform 0.3s ease, opacity 0.3s ease;
+        }
+
+        .nav-links.active {
+          transform: translateX(0);
+          opacity: 1;
+        }
+
+        .nav-links li a {
+          font-size: 25px;
+          padding: 8px 12px;
+        }
+
+        .menu-btn {
+          display: block;
+        }
+
+        .mobile-icons {
+          display: flex;
+          align-items: center;
+          height: 48px;
+        }
+        .mobile-icons span {
+          padding: 0px 8px;
+        }
+
+        .menu-btn {
+          height: 48px;
+          width: 48px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+      }
+
+      /* Desktop Styles (834px and up) */
+      @media (min-width: 834px) {
+        .navbar {
+          justify-content: center;
+          padding: 0px 5%;
+          z-index: 2;
+        }
+
+        .nav-links {
+          justify-content: center;
+          margin: 0 20px;
+        }
+
+        .nav-links li a {
+          font-size: 16px;
+          padding: 10px;
+        }
+
+        .menu-btn {
+          display: none;
+        }
+
+        .flex-center {
+        }
+        .mobile-icons {
+          display: flex;
+          align-items: center;
+          height: 48px;
+          gap: 20px;
+        }
+        .mobile-icons span {
+          margin-left: 25px;
+        }
+      }
+      .nav-links {
+        list-style: none;
+        display: flex;
+        gap: 20px;
+        padding: 0;
+      }
+
+      .nav-item {
+        position: relative;
+      }
+
+      .nav-item a {
+        text-decoration: none;
+        padding: 10px 15px;
+        display: block;
+      }
+
+      /* DROPDOWN STYLE */
+      .dropdown {
+        position: fixed; /* ثابت روی کل صفحه */
+        left: 0;
+        top: 50px; /* کمی پایین‌تر از منو */
+        width: 100%; /* عرض کل صفحه */
+        background-color: #fdfdfd;
+        overflow: hidden;
+        max-height: 0;
+        opacity: 0;
+        transition: opacity 0.4s ease, max-height 0.4s ease;
+        z-index: 999; /* بالا نگه داشتن منو */
+        display: flex;
+        justify-content: space-between; /* مرکز‌چینی افقی */
+        align-items: center; /* مرکز‌چینی عمودی */
+        padding: 0 25%;
+      }
+
+      .dropdown-content {
+        width: 50%; /* عرض ایتم‌ها */
+        opacity: 0;
+        padding: 50px;
+        transform: translateY(-20px); /* شروع انیمیشن از بالاتر */
+        transition: opacity 0.4s ease, transform 0.4s ease;
+        display: flex;
+        flex-direction: column; /* ایتم‌ها به صورت عمودی زیر هم قرار بگیرند */
+        gap: 15px; /* فاصله بین ایتم‌ها */
+        text-align: start; /* مرکز‌چینی متن‌ها */
+      }
+
+      /* هنگام هاور روی آیتم، منو باز شود */
+      .nav-item:hover .dropdown {
+        max-height: 500px; /* افزایش max-height برای مشاهده کامل */
+        opacity: 1;
+      }
+
+      /* انیمیشن برای ظاهر شدن ایتم‌ها */
+      .nav-item:hover .dropdown .dropdown-content {
+        opacity: 1;
+        transform: translateY(0); /* به موقعیت اصلی برگردد */
+      }
+
+      /* مخفی‌سازی در نمایشگرهای کوچکتر از 833px */
+      @media (max-width: 833px) {
+        .dropdown {
+          display: none !important;
+        }
+      }
+    </style> -->
+  </head>
+  <body>
+    <nav class="navbar">
+      <div class="flex-center">
+        <span aria-label="Apple Logo">
+          <svg class="apple-logo" viewBox="0 0 18 44" role="img">
+            <path
+              d="m15.5752 19.0792a4.2055 4.2055 0 0 0 -2.01 3.5376 4.0931 4.0931 0 0 0 2.4908 3.7542 9.7779 9.7779 0 0 1 -1.2755 2.6351c-.7941 1.1431-1.6244 2.2862-2.8878 2.2862s-1.5883-.734-3.0443-.734c-1.42 0-1.9252.7581-3.08.7581s-1.9611-1.0589-2.8876-2.3584a11.3987 11.3987 0 0 1 -1.9373-6.1487c0-3.61 2.3464-5.523 4.6566-5.523 1.2274 0 2.25.8062 3.02.8062.734 0 1.8771-.8543 3.2729-.8543a4.3778 4.3778 0 0 1 3.6822 1.841zm-6.8586-2.0456a1.3865 1.3865 0 0 1 -.2527-.024 1.6557 1.6557 0 0 1 -.0361-.337 4.0341 4.0341 0 0 1 1.0228-2.5148 4.1571 4.1571 0 0 1 2.7314-1.4078 1.7815 1.7815 0 0 1 .0361.373 4.1487 4.1487 0 0 1 -.9867 2.587 3.6039 3.6039 0 0 1 -2.5148 1.3236z" />
+          </svg>
+        </span>
+        <ul class="nav-links">
+          <li class="nav-item">
+            <a href="#">Store</a>
+            <div class="dropdown">
+              <div class="dropdown-content">
+                <p>Store</p>
+                <h2>Shop the latest</h2>
+                <h2>iPad</h2>
+                <h2>iPhone</h2>
+              </div>
+            </div>
+          </li>
+          <li class="nav-item">
+            <a href="#">Mac</a>
+            <div class="dropdown">
+              <div class="dropdown-content">
+                <p>Explore Mac</p>
+                <h2>Explore All Mac</h2>
+                <h2>MacBook Air</h2>
+                <h2>Macbook Pro</h2>
+              </div>
+            </div>
+          </li>
+          <li class="nav-item">
+            <a href="#">iPad</a>
+            <div class="dropdown">
+              <div class="dropdown-content">
+                <p>Explore iPad</p>
+                <h2>Explore All iPad</h2>
+                <h2>iPad Pro</h2>
+                <h2>iPad Air</h2>
+              </div>
+            </div>
+          </li>
+          <li class="nav-item">
+            <a href="#">iPhone</a>
+            <div class="dropdown">
+              <div class="dropdown-content">
+                <p>Explore iPhone</p>
+                <h2>Explore All iPhone</h2>
+                <h2>iPhone 12</h2>
+                <h2>iPhone 12 Pro</h2>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <div class="flex-center">
+        <div class="mobile-icons">
+          <span>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              viewBox="0 0 14 40">
+              <path
+                d="M14.298,27.202l-3.87-3.87c0.701-0.929,1.122-2.081,1.122-3.332c0-3.06-2.489-5.55-5.55-5.55c-3.06,0-5.55,2.49-5.55,5.55 c0,3.061,2.49,5.55,5.55,5.55c1.251,0,2.403-0.421,3.332-1.122l3.87,3.87c0.151,0.151,0.35,0.228,0.548,0.228 s0.396-0.076,0.548-0.228C14.601,27.995,14.601,27.505,14.298,27.202z M1.55,20c0-2.454,1.997-4.45,4.45-4.45 c2.454,0,4.45,1.997,4.45,4.45S8.454,24.45,6,24.45C3.546,24.45,1.55,22.454,1.55,20z"></path>
+            </svg>
+          </span>
+          <span class="globalnav-image-regular">
+            <svg
+              width="16"
+              viewBox="0 0 14 40"
+              xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="m11.3535 16.0283h-1.0205a3.4229 3.4229 0 0 0 -3.333-2.9648 3.4229 3.4229 0 0 0 -3.333 2.9648h-1.02a2.1184 2.1184 0 0 0 -2.117 2.1162v7.7155a2.1186 2.1186 0 0 0 2.1162 2.1167h8.707a2.1186 2.1186 0 0 0 2.1168-2.1167v-7.7155a2.1184 2.1184 0 0 0 -2.1165-2.1162zm-4.3535-1.8652a2.3169 2.3169 0 0 1 2.2222 1.8652h-4.4444a2.3169 2.3169 0 0 1 2.2222-1.8652zm5.37 11.6969a1.0182 1.0182 0 0 1 -1.0166 1.0171h-8.7069a1.0182 1.0182 0 0 1 -1.0165-1.0171v-7.7155a1.0178 1.0178 0 0 1 1.0166-1.0166h8.707a1.0178 1.0178 0 0 1 1.0164 1.0166z"></path>
+            </svg>
+          </span>
+        </div>
+        <button class="menu-btn" aria-label="Toggle navigation">
+          <div class="menu-icon">
+            <span></span>
+            <span></span>
+          </div>
+        </button>
+        <div class="overlay"></div>
+      </div>
+    </nav>
+    <section class="hero">
+      <div class="hero-content">
+        <h2>MacBook Air</h2>
+        <p>Sky blue color.<br />Sky high performance with M4.</p>
+        <div class="hero-actions">
+          <a href="/macbook-air/" class="hero-btn learn-more">Learn more</a>
+          <a href="/us/shop/goto/buy_mac/macbook_air" class="hero-btn buy"
+            >Buy</a
+          >
+        </div>
+        <p class="tagline">Built for Apple Intelligence.</p>
+      </div>
+      <img
+        src="https://www.apple.com/v/home/cd/images/heroes/macbook-air/hero_macbook_air_avail__fpm99qgohx2e_largetall_2x.jpg"
+        alt="MacBook Air"
+        class="hero-image" />
+    </section>
+    <script>
+      const menuBtn = document.querySelector(".menu-btn");
+      const navLinks = document.querySelector(".nav-links");
+      const overlay = document.querySelector(".overlay");
+      const body = document.body;
+
+      // Toggle Menu
+      menuBtn.addEventListener("click", () => {
+        const isOpen = menuBtn.classList.toggle("active");
+        navLinks.classList.toggle("active");
+        overlay.classList.toggle("active");
+        body.style.overflow = isOpen ? "hidden" : "auto";
+      });
+
+      // Close Menu
+      overlay.addEventListener("click", closeMenu);
+      document.addEventListener(
+        "keydown",
+        (e) => e.key === "Escape" && closeMenu(),
+      );
+
+      function closeMenu() {
+        menuBtn.classList.remove("active");
+        navLinks.classList.remove("active");
+        overlay.classList.remove("active");
+        body.style.overflow = "auto";
+      }
+
+      // Get all items inside li elements
+      const navItems = navLinks.querySelectorAll("li a");
+      navItems.forEach((item) => {
+        item.addEventListener("click", () => {
+          closeMenu();
+        });
+      });
+    </script>
+  </body>
+</html>
