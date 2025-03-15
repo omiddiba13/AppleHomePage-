@@ -93,6 +93,7 @@
         <div class="overlay"></div>
       </div>
     </nav>
+
     <section class="hero">
       <div class="hero-content">
         <h2>MacBook Air</h2>
@@ -103,12 +104,26 @@
             >Buy</a
           >
         </div>
-        <p class="tagline">Built for Apple Intelligence.</p>
       </div>
-      <img
-        src="https://www.apple.com/v/home/cd/images/heroes/macbook-air/hero_macbook_air_avail__fpm99qgohx2e_largetall_2x.jpg"
-        alt="MacBook Air"
-        class="hero-image" />
+
+      <picture>
+        <source
+          media="(min-width: 834px)"
+          srcset="
+            https://www.apple.com/v/home/cd/images/heroes/macbook-air/hero_macbook_air_avail__fpm99qgohx2e_largetall_2x.jpg
+          " />
+        <source
+          media="(max-width: 833px)"
+          srcset="
+            https://www.apple.com/v/home/cd/images/heroes/macbook-air/hero_macbook_air_avail__fpm99qgohx2e_small_2x.jpg
+          " />
+        <img
+          src="https://www.apple.com/v/home/cd/images/heroes/macbook-air/hero_macbook_air_avail__fpm99qgohx2e_largetall_2x.jpg"
+          alt="MacBook Air"
+          class="hero-image" />
+      </picture>
+
+      <p class="tagline">Built for Apple Intelligence.</p>
     </section>
     <script>
       const menuBtn = document.querySelector(".menu-btn");
