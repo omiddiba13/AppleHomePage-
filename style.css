@@ -142,6 +142,7 @@ body {
   }
   .nav-links li a::after {
     content: ">";
+    display: flex;
     position: absolute;
     right: -250px; /* Initial distance from link */
     top: 50%;
@@ -151,7 +152,7 @@ body {
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
-  .nav-links li a:hover::after {
+  .nav-links li :hover::after {
     opacity: 1;
     right: -280px; /* Final distance on hover */
   }
@@ -285,7 +286,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: flex-start;
-  padding: 46px;
+  padding-top: 46px;
   overflow: hidden;
   background: linear-gradient(to bottom, #e5f1fc, #ffffff);
 }
@@ -297,6 +298,7 @@ body {
   color: #000;
   max-width: 1200px;
   width: 100%;
+  margin-top: 44px;
 }
 
 .hero h2 {
@@ -321,13 +323,13 @@ body {
 
 .hero-btn {
   text-decoration: none;
-  padding: 14px 32px;
+  padding: 10px 28px;
   border-radius: 50px;
-  font-size: clamp(1rem, 1.5vw, 1.2rem);
+  font-size: clamp(0.9rem, 1.3vw, 1.1rem);
   margin: 1px;
   display: inline-block;
   transition: all 0.3s ease;
-  border: 2px solid transparent;
+  border: 1px solid transparent;
   cursor: pointer;
 }
 
@@ -355,7 +357,7 @@ body {
 
 .tagline {
   position: absolute;
-  bottom: 60px;
+  bottom: 5px;
   left: 50%;
   transform: translateX(-50%);
   font-size: clamp(0.9rem, 1.5vw, 1.2rem);
@@ -376,7 +378,7 @@ body {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center 75%;
+  object-position: center;
   z-index: 0;
 }
 
@@ -391,10 +393,8 @@ picture {
 }
 @media (max-width: 833px) {
   .hero {
-    height: auto; /* به جای ۷۰vh، ارتفاع خودکار بر اساس محتوا */
-
-    padding: 44px; /* تنظیم مجدد پدینگ */
-    margin-top: 10px;
+    height: auto;
+    padding-top: 44px;
   }
 
   .hero-content {
@@ -403,16 +403,38 @@ picture {
     align-items: center;
     justify-content: center;
   }
+  .hero-actions {
+    display: flex;
+    justify-content: center;
+    flex-wrap: nowrap;
+    width: 60%;
+  }
 
   .hero-btn {
     width: 100%;
-    max-width: 250px;
+    max-width: 200px;
     margin: 2px;
-    padding: 15px;
-    font-size: 0.8rem;
+    padding: 10px;
+    font-size: 0.7rem;
   }
-
-  .tagline {
-    bottom: 30px; /* کمی بالاتر بیاد */
+}
+div {
+  display: block;
+  unicode-bidi: isolate;
+}
+.hero-content-2 {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  color: #000;
+  max-width: 1200px;
+  width: 100%;
+}
+@media (max-width: 833px) {
+  .hero-content-2 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
   }
 }
