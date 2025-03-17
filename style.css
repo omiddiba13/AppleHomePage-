@@ -1,27 +1,27 @@
+/* Reset and Base Styles */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, sans-serif; /* Moved font-family here to apply globally */
 }
 
+/* Utility Classes */
+.flex-center {
+  display: flex;
+  align-items: center;
+}
+
+/* Body Styles */
 body {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-    "Helvetica Neue", Arial, sans-serif;
   overflow-x: hidden;
   background-color: #f5f5f7;
   color: #1d1d1f;
   min-width: 320px;
 }
 
-.flex-center {
-  display: flex;
-  align-items: center;
-}
-
-.apple-logo {
-  height: 48px;
-}
-
+/* Navbar and Navigation */
 .navbar {
   display: flex;
   align-items: center;
@@ -34,9 +34,15 @@ body {
 }
 
 .nav-links {
-  list-style-type: none;
+  list-style: none; /* Removed 'type' - it's redundant */
   display: flex;
   gap: 20px;
+  padding: 0; /* Consistent with global reset */
+}
+
+.nav-item {
+  /* Added for dropdown functionality */
+  position: relative;
 }
 
 .nav-links li a {
@@ -49,6 +55,18 @@ body {
   opacity: 0.7;
 }
 
+.nav-item a {
+  /* For dropdown links */
+  text-decoration: none;
+  padding: 10px 15px;
+  display: block;
+}
+
+.apple-logo {
+  height: 48px;
+}
+
+/* Mobile Menu and Overlay */
 .menu-btn {
   background: none;
   border: none;
@@ -105,6 +123,93 @@ body {
   visibility: visible;
 }
 
+.mobile-icons {
+  display: flex;
+  align-items: center;
+  height: 48px;
+}
+
+.mobile-icons span {
+  padding: 0px 8px;
+}
+
+/* Dropdown */
+.dropdown {
+  position: fixed;
+  left: 0;
+  top: 50px;
+  width: 100%;
+  background-color: #fdfdfd;
+  overflow: hidden; /* Important for the animation */
+  max-height: 0; /* Start hidden */
+  opacity: 0;
+  transition: opacity 0.4s ease, max-height 0.4s ease;
+  z-index: 999; /* Ensure it's above other content */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 25%;
+}
+
+.dropdown-content {
+  width: 50%;
+  opacity: 0;
+  padding: 50px;
+  transform: translateY(-20px); /* Start slightly above */
+  transition: opacity 0.4s ease, transform 0.4s ease;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  text-align: start;
+}
+
+.nav-item:hover .dropdown {
+  max-height: 500px; /* Animate to a reasonable max height */
+  opacity: 1;
+}
+
+.nav-item:hover .dropdown .dropdown-content {
+  opacity: 1;
+  transform: translateY(0); /* Animate to the correct position */
+}
+
+/* Media Queries for Navbar and Navigation */
+@media (min-width: 834px) {
+  .navbar {
+    justify-content: center;
+    padding: 0px 5%;
+    /*  z-index: 2;  Removed, navbar has z-index 4 already */
+  }
+
+  .nav-links {
+    justify-content: center;
+    margin: 0 20px;
+  }
+
+  .nav-links li a {
+    font-size: 16px;
+    padding: 10px;
+    font-weight: 400;
+  }
+
+  .menu-btn {
+    display: none;
+  }
+
+  /* .flex-center {  Already defined at the top } */
+
+  .mobile-icons {
+    /* display: flex;
+    align-items: center;
+    height: 48px; */ /* Already Defined */
+    gap: 20px; /* Only relevant on desktop */
+  }
+
+  .mobile-icons span {
+    margin-left: 25px; /* Only relevant on desktop */
+  }
+}
+
 @media (max-width: 833px) {
   .navbar {
     justify-content: space-between;
@@ -140,11 +245,12 @@ body {
     display: inline-block;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   }
+
   .nav-links li a::after {
     content: ">";
     display: flex;
     position: absolute;
-    right: -250px; /* Initial distance from link */
+    right: -250px;
     top: 50%;
     transform: translateY(-50%);
     color: #2c2c2cd7;
@@ -154,134 +260,30 @@ body {
 
   .nav-links li :hover::after {
     opacity: 1;
-    right: -280px; /* Final distance on hover */
+    right: -280px;
   }
 
   .menu-btn {
-    display: block;
-  }
-
-  .mobile-icons {
-    display: flex;
-    align-items: center;
-    height: 48px;
-  }
-
-  .mobile-icons span {
-    padding: 0px 8px;
-  }
-
-  .menu-btn {
-    height: 48px;
-    width: 48px;
-    display: flex;
+    /* display: block; */ /* Already have display flex */
+    height: 48px; /* Defined in mobile icons */
+    width: 48px; /* Defined in mobile icons */
+    display: flex; /* For centering icon */
     align-items: center;
     justify-content: center;
   }
-}
+  /* .mobile-icons {  Already defined above } */
 
-@media (min-width: 834px) {
-  .navbar {
-    justify-content: center;
-    padding: 0px 5%;
-    z-index: 2;
-  }
-
-  .nav-links {
-    justify-content: center;
-    margin: 0 20px;
-  }
-  .nav-links li a {
-    font-size: 16px;
-    padding: 10px;
-    font-weight: 400;
-  }
-
-  .menu-btn {
-    display: none;
-  }
-
-  .flex-center {
-  }
-
-  .mobile-icons {
-    display: flex;
-    align-items: center;
-    height: 48px;
-    gap: 20px;
-  }
-
-  .mobile-icons span {
-    margin-left: 25px;
-  }
-}
-
-.nav-links {
-  list-style: none;
-  display: flex;
-  gap: 20px;
-  padding: 0;
-}
-
-.nav-item {
-  position: relative;
-}
-
-.nav-item a {
-  text-decoration: none;
-  padding: 10px 15px;
-  display: block;
-}
-
-.dropdown {
-  position: fixed;
-  left: 0;
-  top: 50px;
-  width: 100%;
-  background-color: #fdfdfd;
-  overflow: hidden;
-  max-height: 0;
-  opacity: 0;
-  transition: opacity 0.4s ease, max-height 0.4s ease;
-  z-index: 999;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0 25%;
-}
-
-.dropdown-content {
-  width: 50%;
-  opacity: 0;
-  padding: 50px;
-  transform: translateY(-20px);
-  transition: opacity 0.4s ease, transform 0.4s ease;
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-  text-align: start;
-}
-
-.nav-item:hover .dropdown {
-  max-height: 500px;
-  opacity: 1;
-}
-
-.nav-item:hover .dropdown .dropdown-content {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-@media (max-width: 833px) {
+  /* .mobile-icons span { Already defined above} */
   .dropdown {
-    display: none !important;
+    display: none !important; /* Hide on mobile */
   }
 }
-/* section one */
+
+/* Section One: Hero Section */
 .hero {
   position: relative;
   width: 100%;
-  height: 100%;
+  height: 100%; /*  Consider removing if using min-height */
   min-height: 680px;
   display: flex;
   justify-content: center;
@@ -372,6 +374,7 @@ body {
 }
 
 .hero-image {
+  /*  Keep this for explicit image styling */
   position: absolute;
   top: 0;
   left: 0;
@@ -384,6 +387,7 @@ body {
 
 /* Responsive Image Logic */
 picture {
+  /* Use picture for responsive images.  More semantic than a div. */
   position: absolute;
   top: 0;
   left: 0;
@@ -391,9 +395,11 @@ picture {
   height: 100%;
   z-index: 0;
 }
+
+/* Hero Section Media Queries */
 @media (max-width: 833px) {
   .hero {
-    height: auto;
+    height: auto; /* Allow hero to adjust height based on content */
     padding-top: 44px;
   }
 
@@ -403,25 +409,34 @@ picture {
     align-items: center;
     justify-content: center;
   }
+  .hero-content-2 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
   .hero-actions {
     display: flex;
     justify-content: center;
-    flex-wrap: nowrap;
-    width: 60%;
+    flex-wrap: nowrap; /* Prevent wrapping on very small screens */
+    width: 60%; /* Control button width */
   }
 
   .hero-btn {
-    width: 100%;
-    max-width: 200px;
-    margin: 2px;
-    padding: 10px;
-    font-size: 0.7rem;
+    width: 100%; /* Full width buttons on small screens */
+    max-width: 200px; /* Limit button width */
+    margin: 2px; /*  Reduce margin */
+    padding: 10px; /* Reduce padding */
+    font-size: 0.7rem; /* Smaller font size */
   }
 }
+
 div {
   display: block;
   unicode-bidi: isolate;
 }
+
 .hero-content-2 {
   position: relative;
   z-index: 1;
@@ -430,11 +445,169 @@ div {
   max-width: 1200px;
   width: 100%;
 }
-@media (max-width: 833px) {
-  .hero-content-2 {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+
+/* Section Three: Cards */
+
+/* Container for Cards */
+.card-container {
+  max-width: 1200px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+}
+
+/* Individual Card Styling */
+.card {
+  overflow: hidden;
+  position: relative;
+  min-height: 500px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  background-size: cover;
+  background-position: center;
+  border-radius: 18px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.card:nth-child(2) {
+  align-items: end;
+}
+
+/* Gradient Overlay for Better Text Visibility */
+.card::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  /*  background: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.5)); Consider adding a gradient */
+  z-index: 1;
+}
+
+/* Content Wrapper Inside Card */
+.content-wrapper {
+  text-align: center;
+  color: rgb(2, 2, 2); /*  Consider using a named color or variable */
+  position: relative;
+  z-index: 2;
+  width: 100%; /* Added for centering content properly*/
+  padding: 20px; /* Added some padding */
+}
+
+/* Card Title */
+.card h1 {
+  /*  Target h1 within .card */
+  font-size: 2.8rem;
+  font-weight: 500;
+  margin-bottom: 0.8rem;
+  letter-spacing: -0.3px;
+}
+
+/* Card Description */
+.card p {
+  /* Target p within .card */
+  font-size: 1.3rem;
+  margin-bottom: 2rem;
+  font-weight: 300;
+  line-height: 1.4;
+}
+
+/* Button Group Container */
+.button-group {
+  display: flex;
+  gap: 1.2rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* Base Button Styles */
+.btn {
+  padding: 10px 28px;
+  border-radius: 24px;
+  font-size: 1rem;
+  font-weight: 400;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  border: 1.5px solid transparent;
+}
+
+/* Learn More Button */
+.btn-learn {
+  background: #2c313b;
+  color: white;
+}
+
+/* Try It Free Button */
+.btn-try {
+  background: rgba(255, 255, 255, 0.12);
+  color: rgb(20, 20, 20); /* Consider a named color or variable */
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+/* Button Hover Effects */
+.btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Card Images (using background-image) */
+.card:nth-child(1) {
+  background-image: url("https://www.apple.com/v/home/cd/images/promos/apple-fitness-plus-inspire/promo_apple_fitness_plus_inspire__ee2q2wewp3gy_small_2x.png");
+}
+
+.card:nth-child(2) {
+  background-image: url("https://www.apple.com/v/home/cd/images/promos/carriers/promo_carrier__e0izvxwqosgi_large_2x.jpg");
+}
+
+.card:nth-child(3) {
+  background-image: url("https://www.apple.com/v/home/cd/images/promos/iphone-tradein/promo_iphone_tradein__bugw15ka691e_large_2x.jpg");
+}
+
+.card:nth-child(4) {
+  background-image: url("https://www.apple.com/v/home/cd/images/promos/apple-card/promo_apple_card__5cm7draujpey_large_2x.jpg");
+}
+
+/* Card Section Media Queries */
+@media (max-width: 1068px) {
+  .card {
+    min-height: 450px;
+  }
+
+  .card h1 {
+    font-size: 2.4rem;
+  }
+
+  .card p {
+    font-size: 1.1rem;
+  }
+}
+
+@media (max-width: 734px) {
+  .card-container {
+    grid-template-columns: 1fr; /* Stack cards on smaller screens */
+    gap: 1rem;
+  }
+
+  .card {
+    min-height: 400px;
+    border-radius: 14px;
+  }
+
+  .card h1 {
+    font-size: 2rem;
+  }
+
+  .card p {
+    font-size: 1rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .btn {
+    padding: 8px 22px;
+    font-size: 0.9rem;
   }
 }
