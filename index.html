@@ -4,6 +4,13 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Apple</title>
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/vazirmatn@33.0.3/Vazirmatn-font-face.min.css"
+      rel="stylesheet" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
     <link rel="stylesheet" href="./style.css" />
   </head>
   <body>
@@ -236,41 +243,75 @@
         </div>
       </div>
     </section>
-    <script>
-      const menuBtn = document.querySelector(".menu-btn");
-      const navLinks = document.querySelector(".nav-links");
-      const overlay = document.querySelector(".overlay");
-      const body = document.body;
+    <!-- 4 -->
+    <section class="slider-section">
+      <div class="slider-container">
+        <div class="swiper mySwiper">
+          <div class="swiper-wrapper">
+            <div class="swiper-slide">
+              <picture>
+                <source
+                  media="(max-width: 733px)"
+                  srcset="
+                    https://is1-ssl.mzstatic.com/image/thumb/Features221/v4/84/84/32/84843266-8983-518d-3c25-7b3a240a89fe/8df82dd1-c79e-416d-bf8b-7f01eaeca92c.png/548x1186.jpg
+                  " />
+                <source
+                  media="(min-width: 734px)"
+                  srcset="
+                    https://is1-ssl.mzstatic.com/image/thumb/uemUr1iuDVlIR_UQxdOaeg/1960x1102.jpg
+                  " />
+                <img
+                  src="https://is1-ssl.mzstatic.com/image/thumb/uemUr1iuDVlIR_UQxdOaeg/1960x1102.jpg"
+                  alt=""
+                  loading="lazy" />
+              </picture>
+            </div>
+            <div class="swiper-slide">
+              <picture>
+                <source
+                  media="(max-width: 733px)"
+                  srcset="
+                    https://is1-ssl.mzstatic.com/image/thumb/Features221/v4/04/be/6b/04be6bd0-9a78-7ff8-99dd-3cc7d1dcf964/03e6a4e4-9a6e-41f3-ac4e-679cc2971068.png/548x1186.jpg
+                  " />
+                <source
+                  media="(min-width: 734px)"
+                  srcset="
+                    https://is1-ssl.mzstatic.com/image/thumb/mlNnLrkeXFsJh7QVz4ZMsg/1960x1102.jpg
+                  " />
+                <img
+                  src="https://is1-ssl.mzstatic.com/image/thumb/uemUr1iuDVlIR_UQxdOaeg/1960x1102.jpg"
+                  alt=""
+                  loading="lazy" />
+              </picture>
+            </div>
+            <div class="swiper-slide">
+              <picture>
+                <source
+                  media="(max-width: 733px)"
+                  srcset="
+                    https://is1-ssl.mzstatic.com/image/thumb/Features211/v4/99/4b/48/994b48b4-1053-88a4-3176-a7cd98cd430e/56e57fd6-65b7-4dd4-b38e-dc58f703fb85.png/548x1186.jpg
+                  " />
+                <source
+                  media="(min-width: 734px)"
+                  srcset="
+                    https://is1-ssl.mzstatic.com/image/thumb/EUeDAPovZrBtOcrP2Da5Lw/1378x774.jpg
+                  " />
+                <img
+                  src="https://is1-ssl.mzstatic.com/image/thumb/uemUr1iuDVlIR_UQxdOaeg/1960x1102.jpg"
+                  alt=""
+                  loading="lazy" />
+              </picture>
+            </div>
+          </div>
 
-      // Toggle Menu
-      menuBtn.addEventListener("click", () => {
-        const isOpen = menuBtn.classList.toggle("active");
-        navLinks.classList.toggle("active");
-        overlay.classList.toggle("active");
-        body.style.overflow = isOpen ? "hidden" : "auto";
-      });
+          <div class="swiper-button-next"></div>
+          <div class="swiper-button-prev"></div>
+        </div>
+      </div>
+      <div class="swiper-pagination"></div>
+    </section>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 
-      // Close Menu
-      overlay.addEventListener("click", closeMenu);
-      document.addEventListener(
-        "keydown",
-        (e) => e.key === "Escape" && closeMenu(),
-      );
-
-      function closeMenu() {
-        menuBtn.classList.remove("active");
-        navLinks.classList.remove("active");
-        overlay.classList.remove("active");
-        body.style.overflow = "auto";
-      }
-
-      // Get all items inside li elements
-      const navItems = navLinks.querySelectorAll("li a");
-      navItems.forEach((item) => {
-        item.addEventListener("click", () => {
-          closeMenu();
-        });
-      });
-    </script>
+    <script src="./mine.js"></script>
   </body>
 </html>

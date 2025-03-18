@@ -432,11 +432,6 @@ picture {
   }
 }
 
-div {
-  display: block;
-  unicode-bidi: isolate;
-}
-
 .hero-content-2 {
   position: relative;
   z-index: 1;
@@ -609,5 +604,147 @@ div {
   .btn {
     padding: 8px 22px;
     font-size: 0.9rem;
+  }
+} /* ساختار اصلی سکشن */
+.slider-section {
+  position: relative;
+  overflow: hidden; /* جلوگیری از تاثیر overflow روی کل صفحه */
+  padding: 2rem 0; /* فضای عمودی */
+}
+
+.slider-container {
+  width: 100%;
+  margin: 0 auto; /* تغییر margin به 0 auto برای کنترل بهتر */
+  border-radius: 15px;
+  height: 70vh; /* ارتفاع ثابت برای اسلایدر */
+
+  flex-direction: column;
+  position: relative;
+}
+
+.swiper {
+  width: 100%; /* تغییر از 90% به 100% */
+  height: 100%;
+  overflow: visible !important; /* اجازه نمایش overflow */
+  padding: 0 5%; /* جایگزین padding کانتینر اصلی */
+}
+
+.swiper-wrapper {
+  align-items: center; /* تراز عمودی اسلایدها */
+}
+
+.swiper-slide {
+  transition: transform 0.3s ease, opacity 0.3s ease;
+  opacity: 0.5;
+
+  border-radius: 15px;
+  overflow: hidden;
+  width: 100% !important; /* عرض کمتر برای نمایش اسلایدهای مجاور */
+  margin: 0 -4%; /* ایجاد همپوشانی بین اسلایدها */
+  filter: brightness(0.8); /* تاری جزئی برای اسلایدهای غیرفعال */
+}
+
+.swiper-slide-active {
+  opacity: 1;
+  transform: scale(1);
+  z-index: 2;
+  filter: brightness(1); /* روشنایی کامل برای اسلاید فعال */
+  margin: 0 -1%; /* تنظیم margin برای اسلاید فعال */
+}
+
+.swiper-slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.swiper-pagination-bullet-active {
+  background-color: #000;
+  color: #000;
+}
+
+/* تنظیمات پیشرفته برای دسکتاپ */
+@media (min-width: 734px) {
+  .swiper-slide {
+    width: 75% !important;
+    margin: 0 -8%;
+  }
+
+  .swiper-slide-active {
+    margin: 0 -5%;
+  }
+
+  .swiper-button-next,
+  .swiper-button-prev {
+    display: none !important;
+  }
+}
+
+/* تنظیمات موبایل */
+@media (max-width: 733px) {
+  .slider-container {
+    height: 80vh;
+    padding: 0 3%;
+  }
+
+  .swiper {
+    padding: 0 5%;
+  }
+
+  .swiper-slide {
+    width: 100% !important;
+    margin: 0 -3.5%;
+  }
+  /* تنظیمات پایه برای دکمه‌ها */
+  .swiper-button-next,
+  .swiper-button-prev {
+    --button-offset: 15px; /* مقدار پیشفرض */
+    --button-size: 40px;
+    --icon-size: 1.5rem;
+
+    color: #2c313b !important;
+    width: var(--button-size) !important;
+    height: var(--button-size) !important;
+    transform: translateY(-50%);
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 50%;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .swiper-button-next::after,
+  .swiper-button-prev::after {
+    font-size: var(--icon-size) !important;
+    font-weight: 700;
+  }
+
+  /* موقعیت‌یابی دکمه‌ها */
+  .swiper-button-next {
+    right: var(--button-offset) !important;
+  }
+
+  .swiper-button-prev {
+    left: var(--button-offset) !important;
+  }
+
+  /* تنظیمات دسکتاپ */
+  @media (min-width: 734px) {
+    .swiper-button-next,
+    .swiper-button-prev {
+      --button-offset: 20px;
+      --button-size: 45px;
+      --icon-size: 1.8rem;
+    }
+  }
+
+  /* تنظیمات موبایل */
+  @media (max-width: 733px) {
+    .swiper-button-next,
+    .swiper-button-prev {
+      --button-offset: 8px;
+      --button-size: 35px;
+      --icon-size: 1.2rem;
+    }
   }
 }
