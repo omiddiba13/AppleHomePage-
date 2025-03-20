@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>اسلایدر پیوسته با Swiper</title>
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/swiper@8/swiper-bundle.min.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" />
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        background: #1a1a1a;
+        font-family: Arial, sans-serif;
+      }
+
+      .slider {
+        width: 100%;
+        padding: 50px 0;
+        overflow: hidden;
+      }
+
+      .slider__slide {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+        height: 100%;
+      }
+
+      .slider__image-wrapper img {
+        width: 95%;
+        height: 300px;
+        object-fit: cover;
+      }
+
+      .slider__controls {
+        display: flex;
+        margin: 0 10px;
+        justify-content: flex-start;
+        text-align: center;
+        position: relative;
+        z-index: 10;
+      }
+
+      .slider__button {
+        padding: 15px;
+        width: 50px;
+        height: 50px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      }
+
+      .slider__button:hover {
+        transform: scale(1.1);
+      }
+
+      .slider__button i {
+        font-size: 1.2rem;
+        transition: all 0.3s;
+      }
+
+      @media (max-width: 768px) {
+        .slider__image-wrapper img {
+          width: 95%;
+          height: 100px;
+          object-fit: cover;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <section>
+      <div class="slider swiper-container">
+        <div class="swiper-wrapper">
+          <div class="slider__slide swiper-slide">
+            <div class="slider__image-wrapper">
+              <img
+                src="https://is1-ssl.mzstatic.com/image/thumb/Features211/v4/a6/e1/bd/a6e1bdc0-96f6-40a6-270f-c5e3230e8adc/60891503-b2cf-44d0-a5fb-e268c0c965ab.png/834x472.jpg"
+                alt="" />
+            </div>
+            <div class="slider__image-wrapper">
+              <img
+                src="https://is1-ssl.mzstatic.com/image/thumb/Features221/v4/89/07/9c/89079c5b-29da-cd1f-4ce3-ad68f3d28a68/f0346506-4c9f-4be1-b275-11fa4004b103.png/834x472.jpg"
+                alt="" />
+            </div>
+            <div class="slider__image-wrapper">
+              <img
+                src="https://is1-ssl.mzstatic.com/image/thumb/Features211/v4/03/36/de/0336dec4-8cdd-f206-03ce-4b68bdf29737/e0e01f1e-d50c-4154-835a-f1766ffa89da.png/834x472.jpg"
+                alt="" />
+            </div>
+          </div>
+          <div class="slider__slide swiper-slide">
+            <div class="slider__image-wrapper">
+              <img
+                src="https://is1-ssl.mzstatic.com/image/thumb/Video221/v4/cc/88/58/cc8858ff-e318-d96e-8a1a-a15dad8f5dbf/media-ST_GC_0157-9764864-Artwork-iOS-323746.png/834x472.jpg"
+                alt="" />
+            </div>
+            <div class="slider__image-wrapper">
+              <img
+                src="https://is1-ssl.mzstatic.com/image/thumb/Features/v4/50/43/57/504357ca-3385-ca23-9a32-cbf7045a4a74/0004de7f-c0ba-4eef-a67f-3397b7052937.png/392x392SC.DN01.jpg?l=en-US"
+                alt="" />
+            </div>
+            <div class="slider__image-wrapper">
+              <img
+                src="https://is1-ssl.mzstatic.com/image/thumb/Video221/v4/cc/88/58/cc8858ff-e318-d96e-8a1a-a15dad8f5dbf/media-ST_GC_0157-9764864-Artwork-iOS-323746.png/834x472.jpg"
+                alt="" />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="slider__controls">
+        <button id="startStopBtn" class="slider__button">
+          <i class="fa-solid fa-pause"></i>
+        </button>
+      </div>
+    </section>
+
+    <script src="https://unpkg.com/swiper@8/swiper-bundle.min.js"></script>
+    <script>
+      const startStopBtn = document.getElementById("startStopBtn");
+      const icon = startStopBtn.querySelector("i");
+      let isPlaying = true;
+
+      const swiper = new Swiper(".slider", {
+        loop: true,
+        speed: 14000,
+        allowTouchMove: false,
+        autoplay: {
+          delay: 0,
+          disableOnInteraction: true,
+          waitForTransition: false,
+        },
+        resistanceRatio: 0,
+        grabCursor: false,
+        watchSlidesProgress: true,
+        freeMode: {
+          enabled: false,
+          momentum: false,
+        },
+      });
+
+      startStopBtn.addEventListener("click", () => {
+        if (isPlaying) {
+          swiper.autoplay.stop();
+          icon.classList.replace("fa-pause", "fa-play");
+        } else {
+          swiper.autoplay.start();
+          icon.classList.replace("fa-play", "fa-pause");
+        }
+        isPlaying = !isPlaying;
+      });
+    </script>
+  </body>
+</html>

@@ -614,17 +614,19 @@ picture {
 
 .slider-container {
   width: 100%;
-  margin: 0 auto; /* تغییر margin به 0 auto برای کنترل بهتر */
-  border-radius: 15px;
-  height: 70vh; /* ارتفاع ثابت برای اسلایدر */
-
-  flex-direction: column;
+  height: 80vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   position: relative;
 }
 
 .swiper {
   width: 100%; /* تغییر از 90% به 100% */
   height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   overflow: visible !important; /* اجازه نمایش overflow */
   padding: 0 5%; /* جایگزین padding کانتینر اصلی */
 }
@@ -634,22 +636,20 @@ picture {
 }
 
 .swiper-slide {
-  transition: transform 0.3s ease, opacity 0.3s ease;
+  transition: transform 0.3s ease, opacity 0.3s ease, margin 0.3s ease;
   opacity: 0.5;
-
-  border-radius: 15px;
+  position: relative;
   overflow: hidden;
-  width: 100% !important; /* عرض کمتر برای نمایش اسلایدهای مجاور */
-  margin: 0 -4%; /* ایجاد همپوشانی بین اسلایدها */
-  filter: brightness(0.8); /* تاری جزئی برای اسلایدهای غیرفعال */
+  width: 85%;
+  max-height: 900px;
+  filter: brightness(0.8);
 }
 
 .swiper-slide-active {
   opacity: 1;
-  transform: scale(1);
   z-index: 2;
-  filter: brightness(1); /* روشنایی کامل برای اسلاید فعال */
-  margin: 0 -1%; /* تنظیم margin برای اسلاید فعال */
+  filter: brightness(1);
+  position: relative;
 }
 
 .swiper-slide img {
@@ -665,7 +665,7 @@ picture {
 /* تنظیمات پیشرفته برای دسکتاپ */
 @media (min-width: 734px) {
   .swiper-slide {
-    width: 75% !important;
+    width: 75%;
     margin: 0 -8%;
   }
 
@@ -746,5 +746,260 @@ picture {
       --button-size: 35px;
       --icon-size: 1.2rem;
     }
+  }
+}
+.custom-text-container {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  color: rgb(254, 253, 253);
+  padding: 15px;
+  border-radius: 8px;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  opacity: 0;
+  animation: fadeInUp 0.5s ease-out forwards;
+  animation-delay: 0.2s;
+}
+
+.custom-text-button {
+  background: rgb(255, 255, 255);
+  color: rgb(255, 255, 255);
+  padding: 15px 15px;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  font-size: 18px;
+  margin: 0 10px;
+  opacity: 0;
+  animation: fadeInUp 0.5s ease-out forwards;
+  animation-delay: 0.4s;
+}
+
+.custom-text-button a {
+  color: rgb(0, 0, 0);
+  text-decoration: none;
+}
+
+.custom-text-description {
+  font-size: 20px;
+  margin: 0;
+  opacity: 0;
+  animation: fadeInUp 0.5s ease-out forwards;
+  animation-delay: 0.6s;
+}
+
+.custom-text-description span:first-child {
+  font-weight: bold;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 733px) {
+  .custom-text-container {
+    bottom: 10px;
+    left: 10px;
+  }
+
+  .custom-text-button {
+    padding: 10px 10px;
+    font-size: 14px;
+  }
+
+  .custom-text-description {
+    font-size: 16px;
+  }
+}
+/* استایل کلی فوتر */
+.footer {
+  background-color: #f5f5f7;
+  color: #1d1d1f;
+  padding: 2rem 1rem;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, sans-serif;
+}
+
+/* کانتینر اصلی */
+.footer-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* چیدمان ستون‌ها */
+.footer-columns {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+/* استایل ستون‌ها */
+.footer-col h3 {
+  font-size: 1.1rem;
+  margin-bottom: 1rem;
+  cursor: default;
+  position: relative;
+}
+
+.footer-col ul {
+  list-style: none;
+  transition: max-height 0.3s ease-out;
+  max-height: 1000px;
+  overflow: hidden;
+}
+
+.footer-col li {
+  margin-bottom: 0.5rem;
+  font-size: 0.875rem;
+  color: #666;
+  cursor: pointer;
+}
+
+.footer-col li:hover {
+  text-decoration: underline;
+}
+
+/* بخش پایینی فوتر */
+.footer-bottom {
+  text-align: center;
+  padding-top: 1.5rem;
+  border-top: 1px solid #ddd;
+  font-size: 0.875rem;
+  color: #666;
+}
+
+.footer-bottom a {
+  color: #06c;
+  text-decoration: none;
+}
+
+.footer-bottom a:hover {
+  text-decoration: underline;
+}
+
+/* استایل‌های موبایل */
+@media (max-width: 768px) {
+  .footer-col h3 {
+    cursor: pointer;
+    padding: 0.5rem 0;
+    padding-right: 25px;
+  }
+
+  .footer-col h3::after {
+    content: "+";
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    transition: all 0.3s;
+    font-size: 1.2rem;
+  }
+
+  .footer-col.active h3::after {
+    content: "×";
+    font-size: 1.4rem;
+    top: 45%;
+  }
+
+  .footer-col ul {
+    max-height: 0;
+    padding-left: 0;
+  }
+
+  .footer-col.active ul {
+    max-height: 1000px;
+    padding-top: 0.5rem;
+  }
+
+  .footer-bottom {
+    text-align: left;
+    padding: 1rem;
+    line-height: 1.5;
+  }
+
+  .footer-bottom a {
+    display: block;
+    margin: 0.5rem 0;
+  }
+}
+
+/* استایل‌های دستگاه‌های بسیار کوچک */
+@media (max-width: 480px) {
+  .footer-col h3 {
+    font-size: 1rem;
+  }
+
+  .footer-bottom {
+    font-size: 0.8rem;
+    padding: 1rem 0.5rem;
+  }
+
+  .footer-col h3::after {
+    right: 5px;
+  }
+}
+
+/* انیمیشن‌های اضافی */
+.footer-col ul {
+  transition: max-height 0.3s ease-out, padding 0.3s ease-out;
+}
+
+/* بهبود نمایش لینک‌ها در موبایل */
+@media (hover: none) {
+  .footer-col li:hover {
+    text-decoration: none;
+  }
+}
+.footer-disclaimer {
+  background-color: #f5f5f7;
+  padding: 1rem; /* کاهش پدینگ */
+  border-top: 1px solid #ddd;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, sans-serif;
+  color: #666;
+  font-size: 0.75rem;
+  line-height: 1.5; /* کاهش فاصله خط */
+  margin-top: 1rem; /* کاهش margin-top */
+  max-width: 1000px; /* محدود کردن عرض */
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.footer-disclaimer p {
+  margin: 0;
+  text-align: center;
+}
+
+.footer-disclaimer span {
+  display: block;
+}
+
+@media (max-width: 768px) {
+  .footer-disclaimer {
+    padding: 0.8rem; /* کاهش پدینگ */
+    font-size: 0.7rem;
+    max-width: 90%; /* تنظیم عرض برای دستگاه‌های کوچک‌تر */
+  }
+
+  .footer-disclaimer p {
+    text-align: left;
+  }
+}
+
+@media (max-width: 480px) {
+  .footer-disclaimer {
+    padding: 0.6rem; /* کاهش بیشتر پدینگ */
+    font-size: 0.65rem;
+    max-width: 95%; /* افزایش عرض برای موبایل */
   }
 }
